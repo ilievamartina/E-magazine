@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .form-control:focus {
+            border-color: #f5bc04;
+            box-shadow: 0 0 0 0.1rem #f5bc04;
+        }
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Social Synergy</title>
+    <link rel="stylesheet" th:href="@{/24-news/css/media_query.css}"/>
+    <link rel="stylesheet" th:href="@{/24-news/css/bootstrap.css}"/>
+    <link crossorigin="anonymous" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          rel="stylesheet" th:href="@{'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'}">
+    <link rel="stylesheet" th:href="@{'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'}">
+    <link rel="stylesheet" th:href="@{/24-news/css/animate.css}"/>
+    <link rel="stylesheet" th:href="@{'https://fonts.googleapis.com/css?family=Poppins'}">
+    <link rel="stylesheet" th:href="@{/24-news/css/owl_carousel.css}"/>
+    <link rel="stylesheet" th:href="@{/24-news/css/owl_theme_default.css}"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/24-news/css/style_1.css}"/>
+    <!-- Modernizr JS -->
+    <script th:src="@{/24-news/js/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-3 fh5co_padding_menu">
+                <img alt="img" class="fh5co_logo_width" th:src="@{/24-news/images/logo3.png}"/>
+            </div>
+            <div class="col-12 col-md-9 align-self-center fh5co_mediya_right">
+                <div class="text-center d-inline-block">
+                    <form class="form-inline" th:action="@{/filtered}" th:method="get">
+                        <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" th:name="keyword"
+                               type="search">
+                        <button class=" my-2 my-sm-0 btn btn-link fh5co_display_table" type="submit">
+                            <i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!--<div class="d-inline-block text-center"><img src="images/country.png" alt="img" class="fh5co_country_width"/></div>-->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-faded fh5co_padd_mediya padding_786">
+    <div class="container padding_786">
+        <nav class="navbar navbar-toggleable-md navbar-light ">
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler navbar-toggler-right mt-3" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    type="button"><span class="fa fa-bars"></span></button>
+            <a class="navbar-brand" href="#"><img alt="img" class="mobile_logo_width"
+                                                  th:src="@{/24-news/images/logo.png}"/></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" th:href="@{'/category/{cat}' (cat=technology)}">Technology <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" th:href="@{'/category/{cat}' (cat=lifestyle)}">Lifestyle <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" th:href="@{'/category/{cat}' (cat=sport)}">Sport <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" th:href="@{'/category/{cat}' (cat=astrology)}">Astrology <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" th:href="@{'/category/{cat}' (cat=travel)}">Travel <span class="sr-only">(current)</span></a>
+                    </li>
+                    <th:block sec:authorize="!isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/login}">Login <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/register}">Sign Up <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                    </th:block>
+
+                    <th:block sec:authorize="isAuthenticated()">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="nav-item">
+                            <img style="border-radius: 50%; width: 50px; height: 50px;border:1px solid #9f8c7f;"
+                                 th:src="'data:image/png;jpeg;jpg;base64,'+${userProfile.getProfilePic().getBase64()}">
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button aria-expanded="false" aria-haspopup="true" class="btn btn-link dropdown-toggle"
+                                        data-toggle="dropdown" id="dropdownMenuButton" style="color: #1d1e1f;margin-left: 3px;"
+                                        type="button">
+                                </button>
+                                <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                    <a class="dropdown-item"
+                                       th:href="@{'/profile/{username}' (username=${#authentication.getName()})}">Profile</a>
+                                    <a class="dropdown-item" th:href="@{/post/create}">Create New Post</a>
+                                    <a class="dropdown-item" th:href="@{/addVideo}">Add New Video</a>
+                                    <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </th:block>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+<div class="container mt-5 mr-5 pr-5">
+    <div class="row d-flex">
+        <div class="col-md-4 justify-content-end">
+            <img style="border-radius: 50%; width:60%; height: 50%;border:1px solid #9f8c7f;"
+                 th:if="${#authentication.getName().equals(userProfile.getUsername())}"
+                 th:src="'data:image/png;jpeg;jpg;base64,'+${userProfile.getProfilePic().getBase64()}"/><br/>
+            <img style="border-radius: 50%; width: 60%; height: 70%;border:1px solid #9f8c7f;"
+                 th:if="${!#authentication.getName().equals(userProfile.getUsername())}"
+                 th:src="'data:image/png;jpeg;jpg;base64,'+${userProfile.getProfilePic().getBase64()}"/><br/>
+            <form enctype="multipart/form-data"
+                  th:action="@{/changeProfilePic}" th:if="${#authentication.getName().equals(userProfile.getUsername())}" th:method="post">
+                <label for="photo">Change Profile Picture:</label>
+                <input class="form-control"
+                       id="photo"
+                       th:name="photo"
+                       type="file"
+                /><br/>
+                <button class="btn btn-warning" type="submit">Submit</button>
+            </form>
+            <br/>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="col-md-4 justify-content-end">
+            <h5>Name and Surname: </h5>
+            <p th:text="${userProfile.getName()+' '+userProfile.getSurname()}"></p><br/>
+            <h5>Birth date: </h5>
+            <p th:text="${userProfile.getBirthday().toString().substring(0,10)}"></p><br/>
+            <h5>Number of posts: </h5>
+            <p th:text="${usersPosts.size()}"></p><br/>
+        </div>
+    </div>
+    <div>
+        <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4 ">Articles</div>
+    </div>
+    <div th:each="post : ${usersPosts}">
+        <div class="row">
+            <div class="col-md-4">
+                <a class="fh5co_magna py-2" th:href="@{'/posts/{id}' (id=${post.getId()})}"
+                   th:text="${post.getTitle()}"></a>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <span th:text="${post.getDateCreated().toString().substring(0,10)}"></span>
+            </div>
+
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="d-flex justify-content-end" th:if="${#authentication.getName().equals(userProfile.getUsername())}">
+        <form th:action="@{/deleteAccount}" th:method="post">
+            <input th:name="username" th:value="${#authentication.getName()}" type="hidden">
+            <button class="btn btn-danger" type="submit">Delete Account</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid fh5co_footer_bg pb-3">
+    <div class="container animate-box">
+        <div class="row">
+            <div class="col-12 spdp_right py-5"><img alt="img" class="footer_logo"
+                                                     th:src="@{/24-news/images/white_logo1.png}"/></div>
+            <div class="clearfix"></div>
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="footer_main_title py-3"> About</div>
+                <div class="footer_sub_about pb-3"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                    unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+                <div class="footer_mediya_icon">
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-brands fa-linkedin-in"></i></div>
+                    </a></div>
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-brands fa-google-plus-g"></i></div>
+                    </a></div>
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-brands fa-twitter"></i></div>
+                    </a></div>
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-brands fa-facebook-f"></i></div>
+                    </a></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 col-lg-2">
+                <div class="footer_main_title py-3"> Category</div>
+                <ul class="footer_menu">
+                    <li th:each="cat: ${categories}"><a class="" href="#"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                        <span th:text="${cat.name().substring(0,1).toUpperCase()+cat.name().substring(1).toLowerCase()}"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-5 col-lg-3 position_footer_relative">
+                <div class="footer_main_title py-3"> Most Viewed Posts</div>
+
+                <div th:each="post : ${mostViewed}">
+                    <div class="footer_makes_sub_font"
+                         th:text="${post.getDateCreated().toString().substring(0,10)}"></div>
+                    <a class="footer_post pb-4"
+                       th:href="@{'/posts/{id}' (id=${post.getId()})}" th:text="${post.getTitle()}"> </a>
+                </div>
+                <div class="footer_position_absolute"><img alt="img" class="width_footer_sub_img"
+                                                           th:src="@{/24-news/images/footer_sub_tipik.png}"/></div>
+            </div>
+        </div>
+        <div class="row justify-content-center pt-2 pb-4">
+            <div class="col-12 col-md-8 col-lg-7 ">
+                <div class="input-group">
+                    <span class="input-group-addon fh5co_footer_text_box" id="basic-addon1"><i
+                            class="fa fa-envelope"></i></span>
+                    <input aria-describedby="basic-addon1" class="form-control fh5co_footer_text_box" placeholder="Enter your email..."
+                           type="text">
+                    <a class="input-group-addon fh5co_footer_subcribe" href="#" id="basic-addon12"> <i
+                            class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid fh5co_footer_right_reserved">
+    <div class="container">
+        <div class="row  ">
+            <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2022, All rights reserved.</div>
+            <div class="col-12 col-md-6 spdp_right py-4">
+                <a class="footer_last_part_menu" href="#">Home</a>
+                <a class="footer_last_part_menu" th:href="@{Contact_us.html}">About</a>
+                <a class="footer_last_part_menu" th:href="@{Contact_us.html}">Contact</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="gototop js-top">
+        <a class="js-gotop" href="#"><i class="fa fa-arrow-up"></i></a>
+    </div>
+
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script>
+    <script th:src="@{/24-news/js/owl.carousel.min.js}"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+    <script crossorigin="anonymous"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            th:src="@{https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js}"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js}"></script>
+    <!-- Waypoints -->
+    <script th:src="@{/24-news/js/jquery.waypoints.min.js}"></script>
+    <!-- Main -->
+    <script th:src="@{/24-news/js/main.js}"></script>
+</div>
+</body>
+</html>

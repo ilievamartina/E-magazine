@@ -1,0 +1,8 @@
+package mk.ukim.finki.emagazine.model.exceptions;
+
+public class InvalidUserCredentialsException extends RuntimeException {
+
+    public InvalidUserCredentialsException() {
+        super("Invalid user credentials exception");
+    }
+}
